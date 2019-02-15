@@ -9,7 +9,7 @@
             @if($k == 0)
             <div class="hentry work group portfolio-sticky portfolio-full-description">
                 <div class="work-thumbnail">
-                    <a class="thumb"><img src="{{ asset(env('THEME')) }}/images/projects/{{ $item->img->max }}" alt="0081" title="0081" /></a>
+                 <a class="thumb"><img src="{{ asset(env('THEME')) }}/images/projects/{{ $item->img->max }}" alt="0081" title="0081" /></a>
                     <div class="work-overlay">
                         <h3><a href="{{ route('portfolios.show', ['alias' => $item->alias]) }}">{{ $item->title }}</a></h3>
                         <p class="work-overlay-categories"><img src="{{ asset(env('THEME')) }}/images/categories.png" alt="Categories" /> in: <a href="category.html">{{ $item->filter->title }}</a></p>

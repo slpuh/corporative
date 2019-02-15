@@ -16,7 +16,7 @@ abstract class Repository {
            $builder->take($take);
        }
         
-       return $builder->get();
+       return $this->check($builder->get());
        
     }
     
@@ -25,13 +25,13 @@ abstract class Repository {
         if($result->isEmpty()) {
            return false;
        }
-       $result->trnsform(function($item,$key) {
+       $result->transform(function($item,$key) {
            
            if(is_string($item->img) && is_object(json_decode($item->img)) && json_last_error() == JSON_ERROR_NONE) {
            $item->img = json_decode($item->img);
            }
            return $item;
        });
-       return result;
+       return $result;
     }
 }
