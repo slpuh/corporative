@@ -29,6 +29,5 @@ Route::resource('articles', 'ArticleController',[
                                                 'articles' => 'alias'
                                                 ]
                                         ]);
-//Auth::routes();
-//
-//Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('articles/cat/{cat_alias&}', ['uses' => 'ArticleController@index'])->name('articlesCat');
