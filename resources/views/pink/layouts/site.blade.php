@@ -65,7 +65,7 @@
 <!-- END HEAD -->
 
 <!-- START BODY -->
-<body class="no_js responsive page-template-home-php stretched">
+<body class="no_js responsive {{ Route::currentRouteName() == 'home' ? 'page-template-home-php' : '' }} stretched">
 
     <!-- START BG SHADOW -->
     <div class="bg-shadow">
@@ -80,7 +80,7 @@
 
                     <!-- START LOGO -->
                     <div id="logo" class="group">
-                        <a href="index.html" title="Pink Rio"><img src="{{ asset(env('THEME')) }}/images/logo.png" title="Pink Rio" alt="Pink Rio" /></a>
+                        <a href="/" title="Pink Rio"><img src="{{ asset(env('THEME')) }}/images/logo.png" title="Pink Rio" alt="Pink Rio" /></a>
                     </div>
                     <!-- END LOGO -->
 
