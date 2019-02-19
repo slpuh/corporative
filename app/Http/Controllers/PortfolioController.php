@@ -3,57 +3,63 @@
 namespace Corp\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Corp\Repositories\MenusRepository;
+use Corp\Repositories\PortfoliosRepository;
+use Corp\Menu;
 
 class PortfolioController extends SiteController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct(PortfoliosRepository $p_rep) {
+
+        parent::__construct(new MenusRepository(new Menu));
+
+        $this->p_rep = $p_rep;
+        
+        $this->template = env('THEME') . '.portfolios';
+    } 
+    
+    public function index($cat_alias = false)
     {
-        //
+          $this->keywords = 'Портфолио';
+          $this->meta_desc = 'Портфолио';
+          $this->title = 'Портфолио';
+          
+          $portfolios = $this->getPortfolio();
+          
+          $content = view(env('THEME') . '.portfolios_content')->with('portfolios',$portfolios)->render();
+          $this->vars = array_add($this->vars, 'content', $content);
+                   
+        
+          return $this->renderOutput();
+    }
+    
+    public function getPortfolio() {
+        
+        $portfolios = $this->p_rep->get('*',false,true);
+        
+        if($portfolios) {
+            $portfolios->load('filter');
+        }
+        
+        return $portfolios;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
