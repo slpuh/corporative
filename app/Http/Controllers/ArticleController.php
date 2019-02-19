@@ -69,7 +69,7 @@ class ArticleController extends SiteController
             $where = ['category_id', $id];
         }
          
-         $articles = $this->a_rep->get(['id','title','created_at','img','alias','desc','user_id','category_id'], false, true, $where);
+        $articles = $this->a_rep->get(['id','title','created_at','img','alias','desc','user_id','category_id','keywords','meta_desc'], false, true, $where);
         if($articles) {
             $articles->load('user','category','comments');
         }
@@ -95,6 +95,10 @@ class ArticleController extends SiteController
           
             $article->img = json_decode($article->img);
         }
+        
+        $this->title = $article->title;
+        $this->keywords = $article->keywords;
+        $this->meta_desc = $article->meta_desc;
         
         $content = view(env('THEME') . '.article_content')->with('article', $article)->render();
         $this->vars = array_add($this->vars, 'content', $content);

@@ -4,7 +4,7 @@ namespace Corp\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PorfolioController extends Controller
+class PortfolioController extends SiteController
 {
     /**
      * Display a listing of the resource.
