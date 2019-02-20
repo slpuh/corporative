@@ -14,7 +14,7 @@
                             <br />
                             <span class="sublabel">This is the login</span><br />
                         </label>
-                        <div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span><input type="text" name="email" value="" /></div>
+                        <div class="input-prepend"><span class="add-on"><i class="icon-user"></i></span><input type="text" name="login" value="" /></div>
                         <div class="msg-error"></div>
                     </li>
                     <li class="text-field">
