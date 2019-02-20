@@ -4,6 +4,9 @@ namespace Corp\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Corp\Repositories\MenusRepository;
+use Corp\Menu;
+use Corp\Http\Controllers\SiteController;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +49,20 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($this->isHttpException($exception)) {
+            $statusCode = $exception->getStatusCode();
+            
+            switch($statusCode) {
+                case '404':
+                    
+                    $obj = new SiteController(new MenusRepository(new Menu));
+                    $navigation = view(env('THEME').'.navigation')->with('menu',$obj->getMenu())->render();
+                    
+                    \Log::alert('Not found - '. $request->url());
+        
+                    return response()->view(env('THEME').'.404',['bar'=> 'no','title'=>'Not found', 'navigation'=>$navigation]);
+            }
+        }
         return parent::render($request, $exception);
     }
 }
