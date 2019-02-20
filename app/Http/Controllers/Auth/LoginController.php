@@ -5,6 +5,7 @@ namespace Corp\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Corp\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller {
     /*
@@ -26,7 +27,8 @@ use AuthenticatesUsers;
      * @var string
      */
     protected $loginView;
-    protected $redirectTo = '/admin';
+
+    // protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -51,8 +53,19 @@ use AuthenticatesUsers;
     public function username() {
         $login = request()->input('login');
         $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'login';
+        
         request()->merge([$field => $login]);
+        
         return $field;
+    }
+
+    protected function redirectTo() {
+        return '/admin';
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect('/login');
     }
 
 }
