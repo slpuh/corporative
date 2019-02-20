@@ -30,8 +30,8 @@
                     <div class="clear"></div>
                     <div class="work-skillsdate">
                         <p class="skills"><span class="label">Filter:</span> {{ $portfolio->filter->title }}</p>
-                        <p class="skills"><span class="label">Customer:</span> {{ $portfolio->customer }}</p>
-                        <p class="skills"><span class="label">Year:</span> {{ $portfolio->created_at->format('Y') }}</p>
+                        <p class="workdate"><span class="label">Customer:</span> {{ $portfolio->customer }}</p>
+                        <p class="workdate"><span class="label">Year:</span> {{ $portfolio->created_at->format('Y') }}</p>
                     </div>
                     <a class="read-more" href="{{ route('portfolios.show',['alias'=>$portfolio->alias]) }}">View Project</a>            
                 </div>

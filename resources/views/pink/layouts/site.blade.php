@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <!-- this line will appear only if the website is visited with an iPad -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=yes" />
-    
+
     <meta name="keywords" content="{{ (isset($keywords)) ? $keywords : '' }}" />
     <meta name="description" content="{{ (isset($meta_desc)) ? $meta_desc : '' }}" />
-    
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ (isset($title)) ? $title : 'Pink' }}</title>
@@ -68,7 +68,7 @@
 <!-- END HEAD -->
 
 <!-- START BODY -->
-<body class="no_js responsive {{ Route::currentRouteName() == 'home' ? 'page-template-home-php' : '' }} stretched">
+<body class="no_js responsive {{ (Route::currentRouteName() == 'home') ||  (Route::currentRouteName() == 'portfolios.index') ||  (Route::currentRouteName() == 'portfolios.show') ? 'page-template-home-php' : '' }} stretched">
 
     <!-- START BG SHADOW -->
     <div class="bg-shadow">
@@ -110,6 +110,27 @@
             <!-- START SLIDER -->
             @yield('slider')
             <div class="wrap_result"></div>
+            <!-- START PAGE META -->
+            @if(Route::currentRouteName() == 'portfolios.index')
+            <div id="page-meta">
+                <div class="inner group">
+                    <h3>Welcome to my portfolio page</h3>
+                    <h4>... i hope you enjoy my works</h4>
+                </div>
+            </div>
+            @endif
+            <!-- END PAGE META -->
+            <!-- START PAGE META -->
+            @if(Route::currentRouteName() == 'contacts')
+            <div id="page-meta">
+                <div class="inner group">
+                    <h3>...Say Hello! :)</h3>
+                    <h4>Get in touch with Pink Rio team</h4>
+                </div>
+            </div>
+            @endif
+            <!-- END PAGE META -->
+
             <!-- START PRIMARY -->
             <div id="primary" class="sidebar-{{ isset($bar) ? $bar : 'no' }}">
                 <div class="inner group">

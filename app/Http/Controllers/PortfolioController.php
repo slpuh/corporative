@@ -7,61 +7,68 @@ use Corp\Repositories\MenusRepository;
 use Corp\Repositories\PortfoliosRepository;
 use Corp\Menu;
 
-class PortfolioController extends SiteController
-{
+class PortfolioController extends SiteController {
+
     public function __construct(PortfoliosRepository $p_rep) {
 
         parent::__construct(new MenusRepository(new Menu));
 
         $this->p_rep = $p_rep;
-        
+
         $this->template = env('THEME') . '.portfolios';
-    } 
-    
-    public function index($cat_alias = false)
-    {
-          $this->keywords = 'Портфолио';
-          $this->meta_desc = 'Портфолио';
-          $this->title = 'Портфолио';
-          
-          $portfolios = $this->getPortfolio();
-          
-          $content = view(env('THEME') . '.portfolios_content')->with('portfolios',$portfolios)->render();
-          $this->vars = array_add($this->vars, 'content', $content);
-                   
-        
-          return $this->renderOutput();
     }
-    
-    public function getPortfolio() {
-        
-        $portfolios = $this->p_rep->get('*',false,true);
-        
-        if($portfolios) {
+
+    public function index($cat_alias = false) {
+        $this->keywords = 'Портфолио';
+        $this->meta_desc = 'Портфолио';
+        $this->title = 'Портфолио';
+
+        $portfolios = $this->getPortfolios();
+
+        $content = view(env('THEME') . '.portfolios_content')->with('portfolios', $portfolios)->render();
+        $this->vars = array_add($this->vars, 'content', $content);
+
+
+        return $this->renderOutput();
+    }
+
+    public function getPortfolios($take=false,$paginate = true) {
+
+        $portfolios = $this->p_rep->get('*', $take, $paginate);
+
+        if ($portfolios) {
             $portfolios->load('filter');
         }
-        
+
         return $portfolios;
     }
 
-    
-    public function create()
-    {
+    public function create() {
         //
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-    
-    public function show($id)
-    {
+    public function store(Request $request) {
         //
     }
 
-    public function edit($id)
-    {
+    public function show($alias) {
+        
+        $portfolio = $this->p_rep->one($alias);
+        
+        $portfolios = $this->getPortfolios(config('settings.other_portfolios'), false);
+        
+        $this->title = $portfolio->title;
+        $this->keywords = $portfolio->keywords;
+        $this->meta_desc = $portfolio->meta_desc;       
+        
+        
+        $content = view(env('THEME') . '.portfolio_content')->with(['portfolio'=>$portfolio,'portfolios'=>$portfolios])->render();
+         $this->vars = array_add($this->vars, 'content', $content);        
+        
+        return $this->renderOutput();
+    }
+
+    public function edit($id) {
         //
     }
 
@@ -72,8 +79,7 @@ class PortfolioController extends SiteController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -83,8 +89,8 @@ class PortfolioController extends SiteController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

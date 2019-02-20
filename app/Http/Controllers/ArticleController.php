@@ -3,10 +3,10 @@
 namespace Corp\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Corp\Repositories\MenusRepository;
 use Corp\Repositories\PortfoliosRepository;
 use Corp\Repositories\ArticlesRepository;
 use Corp\Repositories\CommentsRepository;
+use Corp\Repositories\MenusRepository;
 use Corp\Menu;
 use Config;
 use Corp\Category;
