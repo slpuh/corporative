@@ -9,7 +9,6 @@
 <div class="box success-box">    
     {{ session('status') }}   
 </div>
-</div>
 @endif    
 
 <div id="content-page" class="content group">
