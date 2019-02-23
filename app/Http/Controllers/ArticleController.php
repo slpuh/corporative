@@ -10,6 +10,7 @@ use Corp\Repositories\MenusRepository;
 use Corp\Menu;
 use Config;
 use Corp\Category;
+use Corp\Article;
 
 class ArticleController extends SiteController
 {
@@ -57,6 +58,8 @@ class ArticleController extends SiteController
         
         $portfolios = $this->p_rep->get(['title','text','alias','img','filter_alias'],$take);
         
+        
+        
         return $portfolios;
     }
 
@@ -73,6 +76,7 @@ class ArticleController extends SiteController
         if($articles) {
             $articles->load('user','category','comments');
         }
+        
         return $articles;
         
     } 
@@ -114,7 +118,7 @@ class ArticleController extends SiteController
 
     public function edit($id)
     {
-        //
+        
     }
 
     public function update(Request $request, $id)
