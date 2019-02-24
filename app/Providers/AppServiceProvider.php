@@ -10,11 +10,6 @@ use DB;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
     public function boot()
     {
         Blade::directive('set', function($exp) {
@@ -28,12 +23,7 @@ class AppServiceProvider extends ServiceProvider
 //            echo '<p>'.$query->sql.'</p>';
 //         });
     }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+    
     public function register()
     {
         

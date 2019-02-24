@@ -5,7 +5,7 @@ namespace Corp;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model {
-
+    
     protected $fillable = ['title', 'img', 'alias', 'text', 'desc', 'category_id'];
 
     public function user() {
