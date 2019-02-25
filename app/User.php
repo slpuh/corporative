@@ -36,15 +36,14 @@ class User extends Authenticatable {
     public function roles() {
         return $this->belongsToMany('Corp\Role', 'role_users');
     }
-    
-        public function canDo($permission, $require = false) {
-        if (is_array($permission)) {            
-            foreach($permission as $permName) {
+
+    public function canDo($permission, $require = false) {
+        if (is_array($permission)) {
+            foreach ($permission as $permName) {
                 $permName = $this->canDo($permName);
-                if($permName && !$require) {
+                if ($permName && !$require) {
                     return true;
-                }
-                else if(!$permName && $require) {
+                } else if (!$permName && $require) {
                     return false;
                 }
             }
@@ -59,25 +58,23 @@ class User extends Authenticatable {
             }
         }
     }
-    
 
     public function hasRole($name, $require = false) {
         if (is_array($permission)) {
-            foreach($name as $roleName) {
+            foreach ($name as $roleName) {
                 $hasRole = $this->hasRole($roleName);
-                if($hasRole && !$require) {
+                if ($hasRole && !$require) {
                     return true;
-                }
-                else if(!$hasRole && $require) {
+                } else if (!$hasRole && $require) {
                     return false;
                 }
             }
             return $require;
         } else {
             foreach ($this->roles as $role) {
-                    if ($role->name == $name) {
-                        return true;
-                    }
+                if ($role->name == $name) {
+                    return true;
+                }
             }
         }
         return false;

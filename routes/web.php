@@ -35,10 +35,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     //admin
     Route::get('/', ['uses' => 'Admin\IndexController@index'])->name('adminIndex');
 
-    Route::resource('articles', 'Admin\ArticlesController', [
+    Route::resource('/articles', 'Admin\ArticlesController', [
         'parameters' => [
             'articles' => 'alias'
         ]
     ]);
+    Route::resource('/permissions', 'Admin\PermissionsController');
+    
+    Route::resource('/menus', 'Admin\MenusController');
 });
 
