@@ -1,4 +1,4 @@
-@extends(env('THEME').'.layouts.site')
+@extends(config('settings.theme').'.layouts.site')
 
 @section('content')
 <div id="content-page" class="content group">

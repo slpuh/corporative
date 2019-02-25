@@ -28,12 +28,12 @@
     <div id="yit-widget-area" class="group">
         <div class="yit-widget-content inner group">
             <div class="widget-first yit-widget widget col1_4 one-fourth col widget-icon-text group">
-                <img class="icon-img" src="{{ asset(env('THEME')) }}/images/icons/cloud.jpg" alt="" />		
+                <img class="icon-img" src="{{ asset(config('settings.theme')) }}/images/icons/cloud.jpg" alt="" />		
                 <h3>Great Design</h3>
                 <p>A widgetized area: add shorcodes, text, icons and more.</p>
             </div>
             <div class="yit-widget widget col1_4 one-fourth col widget-last-post group">
-                <img class="icon-img" src="{{ asset(env('THEME')) }}/images/icons/blog1.png" alt="" />        
+                <img class="icon-img" src="{{ asset(config('settings.theme')) }}/images/icons/blog1.png" alt="" />        
                 <div>
                     <h3><a class="text-color" href="#" title="">Blog news</a></h3>
                     <p>Section shortcodes &amp; sticky posts! <a href="article.html"> | more →</a></p>
@@ -100,6 +100,6 @@
     });
 </script>
 <div class="mobile-slider">
-    <div class="slider fixed-image inner"><img src="{{ asset(env('THEME')) }}/images/slider-cycle/cycle-fixed.jpg" alt="" /></div>
+    <div class="slider fixed-image inner"><img src="{{ asset(config('settings.theme')) }}/images/slider-cycle/cycle-fixed.jpg" alt="" /></div>
 </div>
 @endif

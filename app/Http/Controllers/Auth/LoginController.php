@@ -38,7 +38,7 @@ use AuthenticatesUsers;
     public function __construct() {
         $this->middleware('guest')->except('logout');
 
-        $this->loginView = env('THEME') . '.login';
+        $this->loginView = config('settings.theme') . '.login';
     }
 
     public function showLoginForm() {

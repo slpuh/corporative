@@ -25,13 +25,13 @@ Route::match(['get', 'post'], '/contacts', ['uses' => 'ContactsController@index'
 
 Route::resource('comment', 'CommentController', ['only' => ['store']]);
 
-Route::get('login', 'Auth\LoginController@showLoginForm');
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
-Route::post('login', 'Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@login')->name('login');
 
-Route::get('logout', 'Auth\LoginController@logout');
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'admin','middleware'=>'auth'], function() {
     //admin
     Route::get('/', ['uses' => 'Admin\IndexController@index'])->name('adminIndex');
 

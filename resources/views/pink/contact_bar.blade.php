@@ -20,6 +20,6 @@
     </div>
     <div class="widget-last widget text-image">
         <h3>Customer Support</h3>
-        <div class="text-image" style="text-align:left"><img src="{{ env('THEME') }}/images/callus.gif" alt="Customer Support" /></div>
+        <div class="text-image" style="text-align:left"><img src="{{ config('settings.theme') }}/images/callus.gif" alt="Customer Support" /></div>
         <p>Nunc sit amet pretium purus. Pellet netus et malesuada fames ac turpis egestas.entesque habitant morbi tristique senectus </p>
     </div>
